@@ -70,7 +70,11 @@ function FormSection() {
             age: values.age,
             mobile: values.mobile,
             gender: values.gender
-          });
+          },{
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
           console.log('Response:', res.data);
           formik.setFieldValue('message', 'Registration successful!');
