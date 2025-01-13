@@ -8,9 +8,11 @@
   "src":"/(.*)",
     "dest":"/"
   }]
+ 
   "functions": {
-    "app/api/**/*": {
+    "path/to/dir/**/*": {
       "maxDuration": 5 // All functions can run for a maximum of 5 seconds
     }
   }
+
 }
