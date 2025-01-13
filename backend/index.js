@@ -8,11 +8,13 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
-app.use(cors({
-    origin: 'https://mern-signup-form-frontend.vercel.app',  // Allow React to make requests from this origin
-    methods: ['GET', 'POST'],  // Define the allowed HTTP methods (GET, POST)
-    credentials:true
-  }));
+const corsOptions = {
+    origin: 'https://mern-signup-form-frontend.vercel.app',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+};
+
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 require('./db');
