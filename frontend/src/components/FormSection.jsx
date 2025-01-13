@@ -62,7 +62,7 @@ function FormSection() {
       validate,
       onSubmit: async (values) => {
         try {
-          const res = await axios.post('http://localhost:3000/signup', {
+          const res = await axios.post('https://mern-signup-form-henna.vercel.app/signup', {
             firstname: values.firstname,
             lastname: values.lastname,
             email: values.email,
