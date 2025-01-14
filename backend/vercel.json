@@ -1,18 +1,20 @@
 {
-  "version":2,
-  "builds":[{
-    "src":"*.js","use":"@vercel/node"
-  }],
-  "routes":
-  [{
-  "src":"/(.*)",
-    "dest":"/"
-  }]
- 
+  "version": 2,
+  "builds": [
+    {
+      "src": "*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
   "functions": {
-    "path/to/dir/**/*": {
-      "maxDuration": 5 // All functions can run for a maximum of 5 seconds
+    "api/**/*": {
+      "maxDuration": 5
     }
   }
-
 }
