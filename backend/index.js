@@ -9,9 +9,9 @@ const PORT = 3000;
 
 app.use(bodyParser.json());
 const corsOptions = {
-    origin: 'https://mern-signup-form-frontend.vercel.app',
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type,Authorization',
+    origin: 'https://mern-signup-form-frontend.vercel.app', // Replace with your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    credentials: true 
 };
 
 app.use(cors(corsOptions));
