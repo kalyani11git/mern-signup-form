@@ -73,7 +73,7 @@ function FormSection() {
           },{
                 headers: {
                     'Content-Type': 'application/json',
-                },
+                }
             });
 
           console.log('Response:', res.data);
