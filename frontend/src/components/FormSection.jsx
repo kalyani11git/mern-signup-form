@@ -62,19 +62,25 @@ function FormSection() {
       validate,
       onSubmit: async (values) => {
         try {
-          const res = await axios.post('https://mern-signup-form-henna.vercel.app/signup', {
-            firstname: values.firstname,
-            lastname: values.lastname,
-            email: values.email,
-            password: values.password,
-            age: values.age,
-            mobile: values.mobile,
-            gender: values.gender
-          },{
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
+          const res = await axios.post(
+           'https://mern-signup-form-henna.vercel.app/signup',
+          {
+    firstname: values.firstname,
+    lastname: values.lastname,
+    email: values.email,
+    password: values.password,
+    age: values.age,
+    mobile: values.mobile,
+    gender: values.gender,
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    withCredentials: true, // Allow cookies if needed
+  }
+);
+
 
           console.log('Response:', res.data);
           formik.setFieldValue('message', 'Registration successful!');
