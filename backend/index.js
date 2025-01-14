@@ -15,6 +15,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Allow preflight requests
+
 
 // Connect to MongoDB
 require('./db');
