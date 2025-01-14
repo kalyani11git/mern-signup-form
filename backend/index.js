@@ -42,7 +42,7 @@ app.get('/',async(req,res)=>{
 // Signup Endpoint
 app.post('/signup', async (req, res) => {
     try {
-      console.log("signup");
+      
       const { firstname, lastname, email, password, age, mobile, gender } = req.body;
   
       // Simple validation (can be improved)
