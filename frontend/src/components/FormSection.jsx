@@ -63,7 +63,7 @@ function FormSection() {
       onSubmit: async (values) => {
         try {
           const res = await axios.post(
-           'https://mern-signup-form-henna.vercel.app/signup',
+           "https://mern-signup-form-henna.vercel.app/signup",
           {
     firstname: values.firstname,
     lastname: values.lastname,
@@ -73,11 +73,12 @@ function FormSection() {
     mobile: values.mobile,
     gender: values.gender,
   },
- {
+ { 
+    withCredentials: true, 
     headers: {
       'Content-Type': 'application/json',
     },
-    withCredentials: true, // Include credentials in the request
+   // Include credentials in the request
   }
 );
 
