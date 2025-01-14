@@ -8,6 +8,18 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://mern-signup-form-frontend.vercel.app'); // Your frontend URL
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true'); // Allow credentials
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200); // Respond to preflight requests
+  }
+  next();
+});
+
 const corsOptions = {
     origin: 'https://mern-signup-form-frontend.vercel.app', // Replace with your frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
