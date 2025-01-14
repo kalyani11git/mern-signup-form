@@ -73,11 +73,11 @@ function FormSection() {
     mobile: values.mobile,
     gender: values.gender,
   },
-  {
+ {
     headers: {
       'Content-Type': 'application/json',
     },
-    withCredentials: true, // Allow cookies if needed
+    withCredentials: true, // Include credentials in the request
   }
 );
 
