@@ -16,6 +16,7 @@ const client = new MongoClient(uri, {
   socketTimeoutMS: 45000,
   maxPoolSize: 20,  // Maximum concurrent connections
   minPoolSize: 5,
+  useUnifiedTopology: true,
 });
 
 async function run() {
