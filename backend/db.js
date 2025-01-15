@@ -10,7 +10,8 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,
      serverSelectionTimeoutMS: 50000,
-  }
+  },
+  ssl: true,
 });
 
 async function run() {
