@@ -38,7 +38,7 @@ app.post('/signup', async (req, res) => {
   try {
     console.log('Request to /signup received:', req.body);
 // Other logs inside your try/catch block in /signup
-
+const start = Date.now();  // Start timing
     const { firstname, lastname, email, password, age, mobile, gender } = req.body;
 
     if (!firstname || !lastname || !email || !password || !age || !mobile || !gender) {
@@ -48,6 +48,7 @@ app.post('/signup', async (req, res) => {
     const newUser = new User({ firstname, lastname, email, password, age, mobile, gender });
     await newUser.save();
 
+    console.log(`User saved in: ${Date.now() - start}ms`);
     res.status(201).json({ message: 'User registered successfully', user: newUser });
   } catch (error) {
     console.error('Internal server error:', error);
