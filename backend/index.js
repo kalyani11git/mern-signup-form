@@ -36,6 +36,9 @@ app.get('/', (req, res) => {
 // Signup Endpoint
 app.post('/signup', async (req, res) => {
   try {
+    console.log('Request to /signup received:', req.body);
+// Other logs inside your try/catch block in /signup
+
     const { firstname, lastname, email, password, age, mobile, gender } = req.body;
 
     if (!firstname || !lastname || !email || !password || !age || !mobile || !gender) {
