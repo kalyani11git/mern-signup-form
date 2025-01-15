@@ -8,6 +8,12 @@ const PORT = 3000;
 // Middleware to parse JSON requests
 app.use(express.json());
 
+// Middleware to increase request timeout
+app.use((req, res, next) => {
+  req.setTimeout(30000); // Increase timeout to 30 seconds
+  next();
+});
+
 // CORS Middleware
 const corsOptions = {
   origin: 'https://mern-signup-form-frontend.vercel.app', // Replace with your frontend URL
