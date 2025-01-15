@@ -2,8 +2,8 @@
   "version": 2,
   "functions": {
     "path/to/dir/**/*": {
-      "maxDuration": 5 // All functions can run for a maximum of 5 seconds
-    }
+      "maxDuration": 5 
+    },
   },
   "builds": [
     {
