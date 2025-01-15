@@ -63,7 +63,7 @@ function FormSection() {
       onSubmit: async (values) => {
         try {
           const res = await axios.post(
-           "https://mern-signup-form-henna.vercel.app/signup",
+           "https://mern-signup-form-backend.vercel.app/signup",
           {
     firstname: values.firstname,
     lastname: values.lastname,
