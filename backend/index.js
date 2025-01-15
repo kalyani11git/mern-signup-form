@@ -39,13 +39,13 @@ app.post('/signup', async (req, res) => {
     console.log('Request to /signup received:', req.body);
 // Other logs inside your try/catch block in /signup
 const start = Date.now();  // Start timing
-    const { firstname, lastname, email, password, age, mobile, gender } = req.body;
+    const { username, email, password, age, mobile, gender } = req.body;
 
-    if (!firstname || !lastname || !email || !password || !age || !mobile || !gender) {
+    if (!username || !email || !password || !age || !mobile || !gender) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    const newUser = new User({ firstname, lastname, email, password, age, mobile, gender });
+    const newUser = new User({ username, email, password, age, mobile, gender });
     await newUser.save();
 
     console.log(`User saved in: ${Date.now() - start}ms`);
