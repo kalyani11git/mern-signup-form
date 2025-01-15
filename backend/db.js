@@ -12,6 +12,8 @@ const client = new MongoClient(uri, {
      serverSelectionTimeoutMS: 50000,
   },
   ssl: true,
+  connectTimeoutMS: 10000, // Increase connection timeout in milliseconds (default is 30000)
+  socketTimeoutMS: 45000,
 });
 
 async function run() {
