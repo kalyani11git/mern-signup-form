@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = "mongodb+srv://rcpitwork11:kalyanimali11@cluster0.liobdhs.mongodb.net/";
+const uri = "mongodb+srv://rcpitwork11:kalyanimali11@cluster0.liobdhs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(uri, { dbName: 'mern_app' })
   .then(() => {
