@@ -9,14 +9,10 @@ const client = new MongoClient(uri, {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-    
   },
-  ssl: true,
-  connectTimeoutMS: 10000, // Increase connection timeout in milliseconds (default is 30000)
-  socketTimeoutMS: 45000,
-  maxPoolSize: 20,  // Maximum concurrent connections
-  minPoolSize: 5,
-  useUnifiedTopology: true,
+  tlsCAFile: '/path/to/your/MongoDBAtlasRootCertificate.pem',
+  tlsAllowInvalidCertificates: false,
+  tlsAllowInvalidHostnames: false
 });
 
 async function run() {
