@@ -10,7 +10,7 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,
   },
-  tlsCAFile: '/path/to/your/MongoDBAtlasRootCertificate.pem',
+ 
   tlsAllowInvalidCertificates: false,
   tlsAllowInvalidHostnames: false
 });
