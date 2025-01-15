@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+
 
 const uri = process.env.DATABASE_URL;
 mongoose.connect(uri, { dbName: 'mern_app' })
