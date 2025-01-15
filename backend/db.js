@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
 
-mongoose.connect("mongodb://kalyanimali:kalyani123 @localhost:27017/mern_numetry_db?authSource=admin", { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected...'))
-  .catch(err => console.log(err));
+const uri = "mongodb+srv://rcpitwork11:kalyanimali11@cluster0.liobdhs.mongodb.net/";
+
+mongoose.connect(uri, { dbName: 'mern_app' })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error.message);
+    console.error('Error Details:', error);
+  });
