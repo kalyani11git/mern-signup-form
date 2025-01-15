@@ -32,21 +32,20 @@ app.post('/signup', async (req, res) => {
   try {
     const { firstname, lastname, email, password, age, mobile, gender } = req.body;
 
-    // Simple Validation
     if (!firstname || !lastname || !email || !password || !age || !mobile || !gender) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Save User to Database
     const newUser = new User({ firstname, lastname, email, password, age, mobile, gender });
     await newUser.save();
 
     res.status(201).json({ message: 'User registered successfully', user: newUser });
   } catch (error) {
-    console.error('Internal server error:', error);  
+    console.error('Internal server error:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 });
+
 
 // Start Server
 app.listen(PORT, () => {
