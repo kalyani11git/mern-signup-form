@@ -1,235 +1,274 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
-import axios from 'axios';
+import axios from "axios";
+import "./FormSection.css"; // Add your CSS file
 
-const validate = (values) => {
-    const errors = {};
+// Validation for Signup Form
+const validateSignup = (values) => {
+  const errors = {};
+  if (!values.username) {
+    errors.username = "Username is required";
+  }
+  if (!values.email) {
+    errors.email = "Email is required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+    errors.email = "Invalid email address";
+  }
+  if (!values.password) {
+    errors.password = "Password is required";
+  } else if (values.password.length < 8) {
+    errors.password = "Password must be at least 8 characters long";
+  }
+  if (values.password !== values.confirmPassword) {
+    errors.confirmPassword = "Passwords do not match";
+  }
+  if (!values.age) {
+    errors.age = "Age is required";
+  } else if (isNaN(values.age)) {
+    errors.age = "Age must be a number";
+  }
+  if (!values.mobile) {
+    errors.mobile = "Mobile number is required";
+  }
+  if (!values.gender) {
+    errors.gender = "Gender is required";
+  }
+  return errors;
+};
 
-    if (!values.username) {
-        errors.username = "Username cannot be empty";
-    } else if (values.username.length > 15) {
-        errors.username = "Must be 15 characters or less";
-    } else if (/\s/.test(values.username)) {
-        errors.username = "Username must not contain spaces";
-    }
-
-    if (!values.email) {
-        errors.email = "Email is required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = "Invalid email address";
-    }
-
-    if (!values.password) {
-        errors.password = "Password is required";
-    } else if (values.password.length < 8) {
-        errors.password = "Password must not be less than 8 characters";
-    }
-
-    if (!values.confirmPassword) {
-        errors.confirmPassword = "Confirm Password is required";
-    } else if (values.confirmPassword !== values.password) {
-        errors.confirmPassword = "Passwords must match";
-    }
-
-    if (!values.age) {
-        errors.age = "Age is required";
-    } else if (!/^\d+$/.test(values.age) || parseInt(values.age, 10) <= 0) {
-        errors.age = "Age must be a valid positive number";
-    }
-
-    if (!values.mobile) {
-        errors.mobile = "Mobile number is required";
-    } else if (!/^\d{10}$/.test(values.mobile)) {
-        errors.mobile = "Mobile number must be a 10-digit number";
-    }
-
-    if (!values.gender) {
-        errors.gender = "Gender is required";
-    }
-
-    return errors;
+// Validation for Login Form
+const validateLogin = (values) => {
+  const errors = {};
+  if (!values.username) {
+    errors.username = "Username is required";
+  }
+  if (!values.password) {
+    errors.password = "Password is required";
+  }
+  return errors;
 };
 
 function FormSection() {
-    const formik = useFormik({
-        initialValues: {
-            username: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            age: "",
-            mobile: "",
-            gender: "",
-        },
-        validate,
-        onSubmit: async (values) => {
-            try {
-                const res = await axios.post(
-                    "https://mern-signup-form-backend.vercel.app/signup",
-                    {
-                        username: values.username,
-                        email: values.email,
-                        password: values.password,
-                        age: values.age,
-                        mobile: values.mobile,
-                        gender: values.gender,
-                    },
-                    {
-                        withCredentials: true,
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    }
-                );
+  const [isSignup, setIsSignup] = useState(true);
 
-                console.log('Response:', res.data);
-                formik.setFieldValue('message', 'Registration successful!');
-            } catch (err) {
-                console.error('Error:', err);
-                formik.setFieldValue('message', 'Registration failed!');
-            }
-        },
-    });
+  // Formik for Signup
+  const formikSignup = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      age: "",
+      mobile: "",
+      gender: "",
+    },
+    validate: validateSignup,
+    onSubmit: async (values) => {
+      try {
+        const res = await axios.post("https://mern-signup-form-backend.vercel.app/signup", values, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log("Signup Response:", res.data);
+        formikSignup.setFieldValue("message", "Registration successful!");
+      } catch (err) {
+        console.error("Signup Error:", err);
+        formikSignup.setFieldValue("message", "Registration failed!");
+      }
+    },
+  });
 
-    return (
-        <>
-            <div className="main-container">
-                <div className="sign-up">SIGN UP</div>
-                <div className="section-container">
-                    <div className="form-container">
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                formik.setTouched({
-                                    username: true,
-                                    email: true,
-                                    password: true,
-                                    confirmPassword: true,
-                                    age: true,
-                                    mobile: true,
-                                    gender: true,
-                                });
-                                formik.handleSubmit();
-                            }}
-                        >
-                            <input
-                                type="text"
-                                placeholder="Username"
-                                name="username"
-                                id="username"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.username}
-                            />
-                            {formik.touched.username && formik.errors.username && (
-                                <div className="error">{formik.errors.username}</div>
-                            )}
+  // Formik for Login
+  const formikLogin = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validate: validateLogin,
+    onSubmit: async (values) => {
+      try {
+        const res = await axios.post("https://mern-signup-form-backend.vercel.app/login", values, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log("Login Response:", res.data);
+        formikLogin.setFieldValue("message", "Login successful!");
+      } catch (err) {
+        console.error("Login Error:", err);
+        formikLogin.setFieldValue("message", "Login failed!");
+      }
+    },
+  });
 
-                            <input
-                                type="email"
-                                placeholder="Email Address"
-                                name="email"
-                                id="email"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.email}
-                            />
-                            {formik.touched.email && formik.errors.email && (
-                                <div className="error">{formik.errors.email}</div>
-                            )}
+  return (
+    <div className="main-container">
+      {/* Toggle Switch */}
+    <div className="toggle-switch-container"><div
+    className={`toggle-switch-option toggle-switch  ${isSignup ? "active" : "inactive"}`}
+    onClick={() => setIsSignup(true)}
+  >
+    Signup
+  </div>
+  <div
+    className={`toggle-switch-option toggle-switch ${!isSignup ? "active" : "inactive"}`}
+    onClick={() => setIsSignup(false)}
+  >
+    Login
+  </div>
+</div>
 
-                            <input
-                                type="password"
-                                placeholder="Password"
-                                name="password"
-                                id="password"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.password}
-                            />
-                            {formik.touched.password && formik.errors.password && (
-                                <div className="error">{formik.errors.password}</div>
-                            )}
 
-                            <input
-                                type="password"
-                                placeholder="Confirm Password"
-                                name="confirmPassword"
-                                id="confirmPassword"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.confirmPassword}
-                            />
-                            {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                                <div className="error">{formik.errors.confirmPassword}</div>
-                            )}
 
-                            <input
-                                type="text"
-                                placeholder="Age"
-                                name="age"
-                                id="age"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.age}
-                            />
-                            {formik.touched.age && formik.errors.age && (
-                                <div className="error">{formik.errors.age}</div>
-                            )}
+      {/* Forms */}
+      <div className="section-container">
+        <div className="form-container">
+          {isSignup ? (
+            <>
+              <div className="form-title">SIGN UP</div>
+              <form onSubmit={formikSignup.handleSubmit} className="signup-form">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                  onChange={formikSignup.handleChange}
+                  onBlur={formikSignup.handleBlur}
+                  value={formikSignup.values.username}
+                />
+                {formikSignup.touched.username && formikSignup.errors.username && (
+                  <div className="error">{formikSignup.errors.username}</div>
+                )}
 
-                            <input
-                                type="text"
-                                placeholder="Mobile Number"
-                                name="mobile"
-                                id="mobile"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.mobile}
-                            />
-                            {formik.touched.mobile && formik.errors.mobile && (
-                                <div className="error">{formik.errors.mobile}</div>
-                            )}
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  onChange={formikSignup.handleChange}
+                  onBlur={formikSignup.handleBlur}
+                  value={formikSignup.values.email}
+                />
+                {formikSignup.touched.email && formikSignup.errors.email && (
+                  <div className="error">{formikSignup.errors.email}</div>
+                )}
 
-                            <div className="gender-container">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        value="Male"
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                    />
-                                    Male
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        value="Female"
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                    />
-                                    Female
-                                </label>
-                            </div>
-                            {formik.touched.gender && formik.errors.gender && (
-                                <div className="error">{formik.errors.gender}</div>
-                            )}
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={formikSignup.handleChange}
+                  onBlur={formikSignup.handleBlur}
+                  value={formikSignup.values.password}
+                />
+                {formikSignup.touched.password && formikSignup.errors.password && (
+                  <div className="error">{formikSignup.errors.password}</div>
+                )}
 
-                            <button type="submit" className="submit-btn text-white cursor-pointer">
-                                SIGNUP
-                            </button>
-                            {formik.values.message && (
-                                <div className="form-message">
-                                    {formik.values.message}
-                                </div>
-                            )}
-                        </form>
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  onChange={formikSignup.handleChange}
+                  onBlur={formikSignup.handleBlur}
+                  value={formikSignup.values.confirmPassword}
+                />
+                {formikSignup.touched.confirmPassword &&
+                  formikSignup.errors.confirmPassword && (
+                    <div className="error">
+                      {formikSignup.errors.confirmPassword}
                     </div>
-                </div>
-            </div>
-        </>
-    );
+                  )}
+
+                <input
+                  type="text"
+                  placeholder="Age"
+                  name="age"
+                  onChange={formikSignup.handleChange}
+                  onBlur={formikSignup.handleBlur}
+                  value={formikSignup.values.age}
+                />
+                {formikSignup.touched.age && formikSignup.errors.age && (
+                  <div className="error">{formikSignup.errors.age}</div>
+                )}
+
+                <input
+                  type="text"
+                  placeholder="Mobile"
+                  name="mobile"
+                  onChange={formikSignup.handleChange}
+                  onBlur={formikSignup.handleBlur}
+                  value={formikSignup.values.mobile}
+                />
+                {formikSignup.touched.mobile && formikSignup.errors.mobile && (
+                  <div className="error">{formikSignup.errors.mobile}</div>
+                )}
+
+                <select
+                  name="gender"
+                  onChange={formikSignup.handleChange}
+                  onBlur={formikSignup.handleBlur}
+                  value={formikSignup.values.gender}
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                {formikSignup.touched.gender && formikSignup.errors.gender && (
+                  <div className="error">{formikSignup.errors.gender}</div>
+                )}
+
+                <button type="submit">SIGNUP</button>
+                {formikSignup.values.message && (
+                  <div className="form-message">
+                    {formikSignup.values.message}
+                  </div>
+                )}
+              </form>
+            </>
+          ) : (
+            <>
+              <div className="form-title">LOGIN</div>
+              <form onSubmit={formikLogin.handleSubmit} className="login-form">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                  onChange={formikLogin.handleChange}
+                  onBlur={formikLogin.handleBlur}
+                  value={formikLogin.values.username}
+                />
+                {formikLogin.touched.username && formikLogin.errors.username && (
+                  <div className="error">{formikLogin.errors.username}</div>
+                )}
+
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={formikLogin.handleChange}
+                  onBlur={formikLogin.handleBlur}
+                  value={formikLogin.values.password}
+                />
+                {formikLogin.touched.password && formikLogin.errors.password && (
+                  <div className="error">{formikLogin.errors.password}</div>
+                )}
+
+                <button type="submit">LOGIN</button>
+                {formikLogin.values.message && (
+                  <div className="form-message">
+                    {formikLogin.values.message}
+                  </div>
+                )}
+              </form>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default FormSection;
