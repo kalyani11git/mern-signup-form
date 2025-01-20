@@ -26,13 +26,7 @@ body {
   align-items: center;
   padding: 20px;
   height: 100vh;
-<<<<<<< HEAD
-  /* background-image: url(./assets/images/bg-intro-mobile.png); */
-  background: linear-gradient(to bottom, #0079ff, #002244);
-=======
-/*   background-image: url(./assets/images/bg-intro-mobile.png); */
- background: linear-gradient(to bottom, #0079ff, #002244);
->>>>>>> 3b68b3a39edab479606ea4585870108e0e0d3f07
+
 }
 
 /* App Container */
