@@ -74,11 +74,9 @@ function FormSection() {
         }
         
 
-<<<<<<< HEAD
-        const res = await axios.post("http://localhost:3000/signup", formData, {
-=======
+
         const res = await axios.post("https://mern-signup-form-backend.vercel.app/signup", formData, {
->>>>>>> 3b68b3a39edab479606ea4585870108e0e0d3f07
+
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
@@ -102,11 +100,9 @@ function FormSection() {
     validate: validateLogin,
     onSubmit: async (values) => {
       try {
-<<<<<<< HEAD
-        const res = await axios.post("http://localhost:3000/login", values, {
-=======
+
         const res = await axios.post("https://mern-signup-form-backend.vercel.app/login", values, {
->>>>>>> 3b68b3a39edab479606ea4585870108e0e0d3f07
+
           withCredentials: true,
           headers: {
             "Content-Type": "application/json",
