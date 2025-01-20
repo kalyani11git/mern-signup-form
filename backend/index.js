@@ -20,7 +20,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // CORS Middleware
 const corsOptions = {
 
@@ -69,8 +68,6 @@ app.post('/signup', upload.single('profilePicture'), async (req, res) => {
       ).end(req.file.buffer);
     });
 
-  
-    
     const newUser = new User({
       username,
       email,
