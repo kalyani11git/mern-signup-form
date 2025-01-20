@@ -77,6 +77,7 @@ function FormSection() {
 
         const res = await axios.post("https://mern-signup-form-backend.vercel.app/signup", formData, {
 
+        
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
@@ -103,6 +104,7 @@ function FormSection() {
 
         const res = await axios.post("https://mern-signup-form-backend.vercel.app/login", values, {
 
+       
           withCredentials: true,
           headers: {
             "Content-Type": "application/json",
