@@ -11,8 +11,4 @@ module.exports = cloudinary;
 
 
 // cloud_name: 'dm2gw7sur', 
-<<<<<<< HEAD
 // api_key: '673232598197731', 
-=======
-// api_key: '673232598197731', 
->>>>>>> 3b68b3a39edab479606ea4585870108e0e0d3f07

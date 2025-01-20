@@ -150,7 +150,11 @@
 .login-form .error {
   font-size: 12px;
   color: red;
+<<<<<<< HEAD
   text-align: left;
+=======
+  text-align: center;
+>>>>>>> 3b68b3a39edab479606ea4585870108e0e0d3f07
   grid-column: span 2; /* Span both columns */
 }
 
