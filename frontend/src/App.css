@@ -26,7 +26,7 @@ body {
   align-items: center;
   padding: 20px;
   height: 100vh;
-
+  background: linear-gradient(to bottom, #0079ff, #002244);
 }
 
 /* App Container */
