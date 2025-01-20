@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const uri = process.env.DATABASE_URL;
 mongoose.connect(uri, { dbName: 'mern_app' })
   .then(() => {
