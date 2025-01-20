@@ -69,7 +69,7 @@ app.post('/signup', upload.single('profilePicture'), async (req, res) => {
       ).end(req.file.buffer);
     });
 
-    console.log("profileImage: "+uploadResult.secure_url);
+  
     
     const newUser = new User({
       username,
