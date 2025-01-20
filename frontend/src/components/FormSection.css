@@ -147,37 +147,13 @@
   grid-column: span 2;
 }
 
-/* Error Messages */
-/* .signup-form .error {
-  font-size: 12px;
-  color: red;
-  text-align: center;
-  grid-column: span 2; /* Span both columns */
-}
 
-.signup-form .form-message {
-  font-size: 12px;
-  color: rgb(24, 194, 9);
-  text-align: center;
-  grid-column: span 2; /* Span both columns */
-} */
 
-/* Error Messages */
-/* .login-form .error {
-  font-size: 12px;
-  color: red;
 
-  text-align: center;
 
-  grid-column: span 2; /* Span both columns */
-}
 
-.login-form .form-message {
-  font-size: 12px;
-  color: rgb(24, 194, 9);
-  text-align: center;
-  grid-column: span 2; /* Span both columns */
-} */
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
