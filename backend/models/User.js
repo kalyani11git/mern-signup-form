@@ -26,6 +26,10 @@ const userSchema = new Schema({
   gender: {
     type: String,
     required: true
+  },
+  profileImage:{
+    type:String,
+    required:true
   }
 });
 
