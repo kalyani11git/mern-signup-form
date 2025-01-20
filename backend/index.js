@@ -23,11 +23,8 @@ app.use((req, res, next) => {
 
 // CORS Middleware
 const corsOptions = {
-<<<<<<< HEAD
-  origin: 'http://localhost:5173', // Replace with your frontend URL
-=======
+
   origin: 'https://mern-signup-form-frontend.vercel.app', // Replace with your frontend URL
->>>>>>> 3b68b3a39edab479606ea4585870108e0e0d3f07
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // Allow credentials
 };
