@@ -1,4 +1,4 @@
-/* General Reset */
+General Reset
 * {
   margin: 0;
   padding: 0;
@@ -26,8 +26,8 @@ body {
   align-items: center;
   padding: 20px;
   height: 100vh;
-  background-image: url(./assets/images/bg-intro-mobile.png);
-  background-color: hsl(0, 100%, 74%);
+  /* background-image: url(./assets/images/bg-intro-mobile.png); */
+  background: linear-gradient(to bottom, #0079ff, #002244);
 }
 
 /* App Container */

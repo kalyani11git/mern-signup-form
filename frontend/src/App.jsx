@@ -4,7 +4,7 @@ import FormSection from "./components/FormSection";
 
 function App() {
   return (
-    <div className="app">
+    <div className="app1">
       {/* <TextSection /> */}
       <FormSection />
     </div>
