@@ -131,8 +131,24 @@
   box-shadow: 0 4px 10px rgba(0, 121, 255, 0.3);
 }
 
+.form-message.success {
+   font-size: 16px;
+  color: green;
+  background-color: #d4edda;
+   text-align: center;
+   grid-column: span 2;
+}
+
+.form-message.error {
+  font-size: 16px;
+  color: red;
+  background-color: #f8d7da;
+  text-align: center;
+  grid-column: span 2;
+}
+
 /* Error Messages */
-.signup-form .error {
+/* .signup-form .error {
   font-size: 12px;
   color: red;
   text-align: center;
@@ -144,10 +160,10 @@
   color: rgb(24, 194, 9);
   text-align: center;
   grid-column: span 2; /* Span both columns */
-}
+} */
 
 /* Error Messages */
-.login-form .error {
+/* .login-form .error {
   font-size: 12px;
   color: red;
 
@@ -161,7 +177,7 @@
   color: rgb(24, 194, 9);
   text-align: center;
   grid-column: span 2; /* Span both columns */
-}
+} */
 
 /* Responsive Design */
 @media (max-width: 768px) {
