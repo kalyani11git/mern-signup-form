@@ -137,8 +137,7 @@
    font-size: 16px;
   color: green;
   background-color: #d4edda;
-   text-align: center;
-   grid-column: span 2;
+  
 }
 
 .form-message.error {
@@ -147,8 +146,7 @@
   font-size: 16px;
   color: red;
   background-color: #f8d7da;
-  text-align: center;
-  grid-column: span 2;
+ 
 }
 
 
