@@ -8,18 +8,32 @@
   font-family: Arial, sans-serif;
 }
 
+/* Form Container */
+.form-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  text-align: center;
+}
+
 /* Toggle Switch Container */
 .toggle-switch-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  text-decoration: solid;
-  text-decoration-color: #002244;
-
-  color: aliceblue;
-  font-size: larger;
-  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  background-color: transparent;
+  padding: 10px 0;
+  z-index: 10;
+  border-bottom: 1px solid transparent;
 }
 
 .toggle-switch {
@@ -41,27 +55,19 @@
   color: white;
 }
 
-/* Form Container */
-/* Form Container */
- 
-.form-container{
- background-color: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  width: 600px; /* Two-column layout width */
-  text-align: center;
-}
-
+/* Form Layout: Two Columns */
 .signup-form {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* 2 columns */
-  grid-template-rows: repeat(4, auto);   /* 4 rows */
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-rows: auto; /* Dynamic rows based on content */
   gap: 16px;
+  padding-top: 10px;
+  
 }
 
 .signup-form input,
-.signup-form select {
+.signup-form select,
+.signup-form button {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -69,102 +75,66 @@
   box-sizing: border-box;
 }
 
-.signup-form .form-message {
+/* Error Messages Properly Aligned Below Fields */
+.signup-form .field-container {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 1; /* Ensures it occupies one column */
+}
+
+.signup-form .error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.form-message{
+  text-align: center;
   grid-column: span 2;
  
-  margin-top: 10px;
-  text-align: center;
 }
 
-/* Ensuring each input goes into the right row */
-.signup-form input:nth-child(1),
-.signup-form select:nth-child(7) {
-  grid-row: 1;
-}
-
-.signup-form input:nth-child(2),
-.signup-form select:nth-child(8) {
-  grid-row: 2;
-}
-
-.signup-form input:nth-child(3),
-.signup-form select:nth-child(9) {
-  grid-row: 3;
-}
-
-.signup-form input:nth-child(4),
-.signup-form select:nth-child(10) {
-  grid-row: 4;
-}
-
-/* Ensuring that the button spans both columns */
+/* Button */
 .signup-form button {
-  grid-column: span 2;  /* makes the button span both columns */
-  padding: 12px;
+  grid-column: span 2; /* Button spans both columns */
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
-
-.login-form button {
-  /* makes the button span both columns */
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 
 .signup-form button:hover {
   background: linear-gradient(to right, #0056cc, #0079ff);
   box-shadow: 0 4px 10px rgba(0, 121, 255, 0.3);
 }
 
+.login-form button {
+  /* Button spans both columns */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
 
 .login-form button:hover {
   background: linear-gradient(to right, #0056cc, #0079ff);
   box-shadow: 0 4px 10px rgba(0, 121, 255, 0.3);
 }
 
-.form-message.success {
-  grid-column: span 2;
-  text-align: center;
-   font-size: 16px;
-  color: green;
-  background-color: #d4edda;
-  
-}
-
-.form-message.error {
-  grid-column: span 2;
-  text-align: center;
-  font-size: 16px;
-  color: red;
-  background-color: #f8d7da;
- 
-}
-
-
-
-
-
-
-
-
-
 /* Responsive Design */
 @media (max-width: 768px) {
- 
+  .form-container {
+    width: 90%; /* Fit smaller screens */
+  }
+
   .signup-form {
-    grid-template-columns: 1fr; /* Single-column layout for smaller screens */
+    grid-template-columns: 1fr; /* Single column for smaller devices */
   }
 
   .signup-form button {
-      width: 100%;
+    width: 100%; /* Full-width button */
   }
 }
