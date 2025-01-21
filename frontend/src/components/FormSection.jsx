@@ -143,89 +143,128 @@ function FormSection() {
           {isSignup ? (
             <>
               <div className="form-title">SIGN UP</div>
-              <form onSubmit={formikSignup.handleSubmit} className="signup-form">
+                            <form onSubmit={formikSignup.handleSubmit} className="signup-form">
+  <div className="field-container">
     <input
-        type="text"
-        placeholder="Username"
-        name="username"
-        onChange={formikSignup.handleChange}
-        onBlur={formikSignup.handleBlur}
-        value={formikSignup.values.username}
-        className="username"
+      type="text"
+      placeholder="Username"
+      name="username"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+      value={formikSignup.values.username}
     />
-    <input
-        type="email"
-        placeholder="Email"
-        name="email"
-        onChange={formikSignup.handleChange}
-        onBlur={formikSignup.handleBlur}
-        value={formikSignup.values.email}
-        className="email"
-    />
-    <input
-        type="password"
-        placeholder="Password"
-        name="password"
-        onChange={formikSignup.handleChange}
-        onBlur={formikSignup.handleBlur}
-        value={formikSignup.values.password}
-        className="password"
-    />
-    <input
-        type="password"
-        placeholder="Confirm Password"
-        name="confirmPassword"
-        onChange={formikSignup.handleChange}
-        onBlur={formikSignup.handleBlur}
-        value={formikSignup.values.confirmPassword}
-        className="confirmPassword"
-    />
-    <input
-        type="text"
-        placeholder="Age"
-        name="age"
-        onChange={formikSignup.handleChange}
-        onBlur={formikSignup.handleBlur}
-        value={formikSignup.values.age}
-        className="age"
-    />
-    <input
-        type="text"
-        placeholder="Mobile"
-        name="mobile"
-        onChange={formikSignup.handleChange}
-        onBlur={formikSignup.handleBlur}
-        value={formikSignup.values.mobile}
-        className="mobile"
-    />
-    <select
-        name="gender"
-        onChange={formikSignup.handleChange}
-        onBlur={formikSignup.handleBlur}
-        value={formikSignup.values.gender}
-        className="gender"
-    >
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-    </select>
-    <input
-        type="file"
-        name="profilePicture"
-        accept="image/*"
-        onChange={(event) =>
-            formikSignup.setFieldValue("profilePicture", event.target.files[0])
-        }
-        className="profilePicture"
-    />
-    <button type="submit">SIGNUP</button>
-    {formikSignup.values.message && (
-        <div className="form-message">
-            {formikSignup.values.message}
-        </div>
+    {formikSignup.touched.username && formikSignup.errors.username && (
+      <div className="error">{formikSignup.errors.username}</div>
     )}
-              </form>
+  </div>
+
+  <div className="field-container">
+    <input
+      type="email"
+      placeholder="Email"
+      name="email"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+      value={formikSignup.values.email}
+    />
+    {formikSignup.touched.email && formikSignup.errors.email && (
+      <div className="error">{formikSignup.errors.email}</div>
+    )}
+  </div>
+
+  <div className="field-container">
+    <input
+      type="password"
+      placeholder="Password"
+      name="password"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+      value={formikSignup.values.password}
+    />
+    {formikSignup.touched.password && formikSignup.errors.password && (
+      <div className="error">{formikSignup.errors.password}</div>
+    )}
+  </div>
+
+  <div className="field-container">
+    <input
+      type="password"
+      placeholder="Confirm Password"
+      name="confirmPassword"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+      value={formikSignup.values.confirmPassword}
+    />
+    {formikSignup.touched.confirmPassword &&
+      formikSignup.errors.confirmPassword && (
+        <div className="error">{formikSignup.errors.confirmPassword}</div>
+      )}
+  </div>
+
+  <div className="field-container">
+    <input
+      type="text"
+      placeholder="Age"
+      name="age"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+      value={formikSignup.values.age}
+    />
+    {formikSignup.touched.age && formikSignup.errors.age && (
+      <div className="error">{formikSignup.errors.age}</div>
+    )}
+  </div>
+
+  <div className="field-container">
+    <input
+      type="text"
+      placeholder="Mobile"
+      name="mobile"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+      value={formikSignup.values.mobile}
+    />
+    {formikSignup.touched.mobile && formikSignup.errors.mobile && (
+      <div className="error">{formikSignup.errors.mobile}</div>
+    )}
+  </div>
+
+  <div className="field-container">
+    <select
+      name="gender"
+      onChange={formikSignup.handleChange}
+      onBlur={formikSignup.handleBlur}
+      value={formikSignup.values.gender}
+    >
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    {formikSignup.touched.gender && formikSignup.errors.gender && (
+      <div className="error">{formikSignup.errors.gender}</div>
+    )}
+  </div>
+
+  <div className="field-container">
+    <input
+      type="file"
+      name="profilePicture"
+      accept="image/*"
+      onChange={(event) =>
+        formikSignup.setFieldValue("profilePicture", event.target.files[0])
+      }
+    />
+    {formikSignup.errors.profilePicture && (
+      <div className="error">{formikSignup.errors.profilePicture}</div>
+    )}
+  </div>
+
+  <button type="submit">SIGNUP</button>
+  {formikSignup.values.message && (
+    <div className="form-message" >{formikSignup.values.message}</div>
+  )}
+</form>
 
             </>
           ) : (
